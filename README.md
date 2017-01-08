@@ -1,2 +1,2 @@
 # React-Starter
-React/Redux starter kit
+> React/Redux starter kit
