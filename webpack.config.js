@@ -1,3 +1,4 @@
+const path = require('path');
 const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack-stream').webpack;
 const loaders = require('./loaders.config');
@@ -25,6 +26,7 @@ const options = {
         })
     ],
     module: {
+        preLoaders: [],
         loaders: loaders
     }
 }
@@ -41,6 +43,12 @@ if (!dev) {
             return JSON.stringify(assets);
         }
     }));
+} else {
+    options.module.preLoaders.push({
+        test: /\.jsx?$/,
+        loaders: ['eslint'],
+        include: path.resolve('./src')
+    })
 }
 
 module.exports = options;
