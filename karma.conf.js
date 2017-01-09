@@ -1,6 +1,4 @@
-const webpack = require('webpack-stream').webpack;
 const loaders = require('./loaders.config');
-
 const dev = process.env.NODE_ENV !== 'production';
 
 module.exports = function(config) {

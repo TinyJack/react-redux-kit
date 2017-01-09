@@ -1,5 +1,5 @@
 const AssetsPlugin = require('assets-webpack-plugin');
-const webpackStream = require('webpack-stream');
+const webpack = require('webpack-stream').webpack;
 const loaders = require('./loaders.config');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -16,9 +16,9 @@ const options = {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new webpackStream.webpack.optimize.OccurenceOrderPlugin(),
-        new webpackStream.webpack.NoErrorsPlugin(),
-        new webpackStream.webpack.DefinePlugin({
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
             'process.env':{
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }

@@ -1,3 +1,4 @@
 import 'babel-polyfill'
 
-console.log(123)
+/** boot */
+require.ensure([], require => require('./react/instances/public'))

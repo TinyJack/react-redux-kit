@@ -13,6 +13,7 @@ const webpackStream = require('webpack-stream');
 const dev = process.env.NODE_ENV !== 'production';
 const webpackOptions = require('./webpack.config.js');
 
+/** @gulp: default task */
 gulp.task('default', ['dist', 'watch'], function() {
     require('gulp-develop-server').listen({
         path: './index.js',
@@ -20,6 +21,7 @@ gulp.task('default', ['dist', 'watch'], function() {
     })
 });
 
+/** @gulp: make dist */
 gulp.task('dist', ['js', 'stylus', 'assets'], function() {
     return gulp.src('src/index.html')
         .pipe(gulpif(!dev, revReplace({
@@ -31,6 +33,7 @@ gulp.task('dist', ['js', 'stylus', 'assets'], function() {
         .pipe(gulp.dest('dist'));
 });
 
+/** @gulp: make javascript */
 gulp.task('js', function(done) {
     gulp.src('src/bootstrap.js')
         .pipe(named())
@@ -46,6 +49,7 @@ gulp.task('js', function(done) {
         })
 });
 
+/** @gulp: make styles */
 gulp.task('stylus', function() {
     return gulp.src('src/stylus/style.styl')
         .pipe(plumber())
@@ -60,11 +64,13 @@ gulp.task('stylus', function() {
         .pipe(gulpif(!dev, gulp.dest('manifest')))
 });
 
+/** @gulp: copy assets */
 gulp.task('assets', function() {
     return gulp.src('src/assets/**/*')
         .pipe(gulp.dest('dist'));
 });
 
+/** @gulp: watch task */
 gulp.task('watch', function() {
     gulp.watch('src/**/*.styl', ['stylus']);
     gulp.watch('src/assets/**/*', ['assets']);
