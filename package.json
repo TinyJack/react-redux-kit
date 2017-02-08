@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "karma start",
     "dev": "gulp",
     "dist": "gulp dist",
     "start": "node ./server.js",
