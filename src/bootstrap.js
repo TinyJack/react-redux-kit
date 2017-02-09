@@ -1,4 +1,3 @@
 import 'babel-polyfill'
 
-/** boot */
-require.ensure([], require => require('./react/instances/public'))
+console.log('react-redux-kit');

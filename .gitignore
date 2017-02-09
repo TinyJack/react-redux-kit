@@ -1,6 +1,10 @@
-*.log
-*.lock
+.idea
+*sublime*
 
+*.lock
+*.log
+
+.DS_Store
 dist
 manifest
 node_modules
