@@ -1,3 +1,5 @@
 import 'babel-polyfill'
 
-console.log('react-redux-kit');
+System.import('entries/demo')
+    .then(App => App.onSuccess('react-redux-kit'))
+    .catch(Err => { throw new Error(Err) });
