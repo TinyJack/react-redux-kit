@@ -1,0 +1,32 @@
+@import 'fonts/*'
+@import 'extras/*'
+@import 'mixins/*'
+@import 'elements/*'
+
+html, body, #app, .content
+    height 100%
+    
+.content
+    display flex
+
+body
+    font-smoothing subpixel-antialiased
+    touch-callout none
+    box-sizing border-box
+    font-family 'Myriad Set Pro', sans-serif
+    font-size 14px
+    line-height 22px
+    font-weight 400
+    user-select none
+    background-color #f9
+    color #40
+
+a
+    color #40
+    border 0px
+    outline 0px
+    
+    &:hover, &:visited
+        color #40
+
+@import 'react/*'

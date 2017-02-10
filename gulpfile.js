@@ -52,7 +52,9 @@ const options = {
             new webpack.NoEmitOnErrorsPlugin(),
             new webpack.DefinePlugin({
                 'process.env': {
-                    'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+                    'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+                    'GOOGLE_KEY': JSON.stringify(process.env.GOOGLE_KEY),
+                    'GOOGLE_SENDER': JSON.stringify(process.env.GOOGLE_SENDER)
                 }
             }), !debug ? new assetsPlugin({
                 filename: 'react.json',
