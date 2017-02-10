@@ -1,0 +1,66 @@
+$columns = 12
+
+$screens = {
+    'xs' :  0,
+    'sm' : 544px,
+    'md' : 768px,
+    'lg' : 992px,
+    'xl' : 1200px
+}
+
+.grid
+    box-sizing: border-box
+  
+    &.boxed
+        margin 0 auto
+        max-width: 1200px
+
+.row
+    box-sizing border-box
+    display flex
+    flex 0 1 100%
+    flex-direction row
+    flex-wrap wrap
+    list-style none
+    padding 0
+
+    &:last-child
+        margin-bottom 0
+  
+.col
+    box-sizing: border-box
+    flex: 0 0 100%
+    max-width: 100%
+
+make($screen, $columns)
+    .col-{$screen}
+    
+        &
+            flex-grow: 1
+            flex-basis: 0
+            max-width: 100%
+    
+        &-offset-0
+            margin-left: 0
+    
+        for $number in 1..$columns
+            &{'-'}{$number}
+                width: (100 / $columns * $number) %
+                flex: none
+        
+        for $number in 1..$columns
+            &-offset-{$number}
+                margin-left: (100 / $columns * $number) %
+    
+
+for $screen, $width in $screens
+    if $width == 0
+        make($screen, $columns)
+    else
+        @media (min-width: $width)
+            make($screen, $columns)
+
+for $screen, $width in $screens
+    @media (max-width: $width)
+        .visible-{$screen}
+            display none

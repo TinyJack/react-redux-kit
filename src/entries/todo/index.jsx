@@ -26,6 +26,4 @@ ReactDOM.render(node, document.getElementById('app'));
 
 /** Success loading */
 export function onSuccess(...data) {
-    const [ payload ] = data;
-    store.dispatch({ type: SET_NAME, payload });
 }
