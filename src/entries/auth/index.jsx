@@ -16,5 +16,5 @@ ReactDOM.render(node, document.getElementById('app'));
 
 /** Success loading */
 export function onSuccess(...data) {
-    console.log(data)
+    // TODO: parse error
 }

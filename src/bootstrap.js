@@ -24,8 +24,7 @@ const Auth = new AuthProvider();
 /** Boot up */
 Auth.getUser().then(user => {
     System.import('entries/todo')
-        .then(App => App.onSuccess(user))
-        .catch(Err => { throw new Error(Err) });
+        .then(App => App.onSuccess(user));
 }, error => {
     System.import('entries/auth')
         .then(App => App.onSuccess(error));

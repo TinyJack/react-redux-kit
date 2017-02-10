@@ -12,6 +12,10 @@ if (process.env.NODE_ENV !== 'production') {
     middlewares.push(require('redux-logger')());
 }
 
+/**
+ * Reducers combiner
+ * @type {Function}
+ */
 export default createStore(combineReducers({
     ...reducers,
     routing: routerReducer

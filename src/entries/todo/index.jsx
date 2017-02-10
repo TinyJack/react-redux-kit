@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Redirect, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
-
-import { SET_NAME } from './constants'
 import * as Routes from './routes'
 import store from './store'
+import { SET_USER } from './constants'
 
 /** Bind history actions to store */
 const history = syncHistoryWithStore(browserHistory, store);
@@ -26,4 +25,14 @@ ReactDOM.render(node, document.getElementById('app'));
 
 /** Success loading */
 export function onSuccess(...data) {
+    const [payload] = data;
+
+    /**
+     * Dispatch current user
+     * @type {Dispatch factory}
+     */
+    store.dispatch({
+        payload,
+        type: SET_USER,
+    });
 }

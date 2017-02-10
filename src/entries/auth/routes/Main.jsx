@@ -5,9 +5,17 @@ export default class Main extends Component {
     constructor(props) {
         super(props);
 
+        /**
+         * Authorize factory
+         * @type {Auth}
+         */
         this.auth = new Auth();
     }
 
+    /**
+     * Handle Sign In form submitting
+     * @param  {Object} event Event listener object
+     */
     signIn = event => {
         event.preventDefault();
 

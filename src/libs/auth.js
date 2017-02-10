@@ -1,9 +1,8 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 /**
  * Author @salikovpro
  * 10 Feb. 2017
- * 
  * Firebase Auth factory
  * @constructor {Object} options - Firebase options
  * https://firebase.google.com/docs/web/setup
