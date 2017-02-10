@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import * as Routes from './routes'
 import store from './store'
 import { SET_USER } from './constants'
+import Aside from './components/Aside'
 
 /** Bind history actions to store */
 const history = syncHistoryWithStore(browserHistory, store);
@@ -13,10 +14,14 @@ const history = syncHistoryWithStore(browserHistory, store);
 /** Main Application node */
 const node = (
     <Provider store={store}>
-        <Router history={history}>
-            <Route path="/" component={ Routes.Main } />
-            <Redirect from="*" to="/" />
-        </Router>
+        <div className="content">
+            <Aside />
+            <Router history={history}>
+                <div className="test">ajshkajhdkajhdskjdkad</div>
+                <Route path="/" component={ Routes.Main } />
+                <Redirect from="*" to="/" />
+            </Router>
+        </div>
     </Provider>
 );
 
