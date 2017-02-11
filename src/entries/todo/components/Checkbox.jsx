@@ -10,8 +10,8 @@ export default class Checkbox extends Component {
      * @param  {Proxy event} event
      */
     handleChange = event => {
-        const { checked, id } = this.props;
-        this.props.onChange(id, !checked);
+        const { id } = this.props;
+        this.props.onChange(id);
     }
 
     render() {

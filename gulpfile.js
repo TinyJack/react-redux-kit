@@ -72,7 +72,7 @@ const options = {
 }
 
 function skip() {
-    gutil.log(gutil.colors.red.bold('::WEBPACK DEV PLUGINS ON::'));
+    gutil.log(gutil.colors.red.bold('::WEBPACK DEV PLUGINS ON DEMAND::'));
 }
 
 function end(done) {

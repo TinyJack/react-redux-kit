@@ -1,54 +1,38 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Checkbox from '../components/Checkbox'
+import { todosActions } from '../actions'
 
-
-@connect(store => {
-    return {
-        user: store.user
-    }
-})
+@connect(state => ({
+    todos: state.todos
+}))
 export default class Main extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: '',
-            data: [{
-                id: 1,
-                status: false,
-                title: 'Item 1'
-            }, {
-                id: 2,
-                status: true,
-                title: 'Item 2'
-            }, {
-                id: 3,
-                status: false,
-                title: 'Item 3'
-            }, {
-                id: 4,
-                status: false,
-                title: 'Item 4'
-            }, {
-                id: 5,
-                status: false,
-                title: 'Item 5'
-            }]
+            title: ''
         }
+
+        /** Bind actions to component */
+        this.actions = bindActionCreators(todosActions, this.props.dispatch);
+    };
+
+    componentWillMount() {
+        /**
+         * Fetch todos list
+         */
+        this.actions.fetchList();
     };
 
     /**
      * Change item status
      * @param  {ObjcetId} Item id
-     * @param  {Boolean} Item status
      */
-    checkItem = (id, status) => {
-        this.state.data[this.state.data.findIndex(e => e.id == id)].status = status
-
-        this.setState({
-            data: this.state.data
-        })
+    checkItem = id => {
+        // this.props.dispatch({ type: 'CHECK_ITEM', payload: id});
+        this.actions.checkItem(id);
     };
 
     /**
@@ -58,7 +42,7 @@ export default class Main extends Component {
     handleInput = event => {
         const { value } = event.target;
         this.setState({ title: value });
-    }
+    };
 
     /**
      * Push new item
@@ -67,18 +51,15 @@ export default class Main extends Component {
     push = event => {
         event.preventDefault();
 
-        const data = this.state.data.concat({
-            id: Math.random(),
-            title: this.state.title,
-            status: false
-        });
+        const { title } = this.state;
 
-        this.setState({ title: '', data });
+        this.actions.pushItem(title)
+        this.setState({ title: ''});
     };
 
     render() {
-        const { icon, name, email } = this.props.user;
-        const { title } = this.state
+        const { title } = this.state;
+        const { data } = this.props.todos;
 
         return(
             <div className="todos">
@@ -93,7 +74,7 @@ export default class Main extends Component {
                             </form>
                             <ul className="panel--body">
                                 
-                                {this.state.data.map(item => 
+                                {data.map(item => 
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status} onChange={this.checkItem} />
                                         <span className="todos__item--title">{item.title}</span>

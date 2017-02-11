@@ -4,11 +4,10 @@ import firebase from 'firebase';
  * Author @salikovpro
  * 10 Feb. 2017
  * Firebase Auth factory
- * @constructor {Object} options - Firebase options
  * https://firebase.google.com/docs/web/setup
  */
 export default class Auth {
-    constructor(options) {
+    constructor() {
         this.db = firebase;
     };
 
