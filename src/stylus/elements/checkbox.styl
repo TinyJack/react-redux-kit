@@ -1,0 +1,47 @@
+.checkbox
+    position relative
+    margin-right 10px
+    
+    &--input
+        vertical-align top
+        outline 0
+        opacity 0
+        
+        & + label
+            cursor pointer
+            position absolute
+            left 0
+            top 1px
+                
+            &:before
+                content ''
+                position absolute
+                width 18px
+                height 18px
+                border 1px solid oc-gray-3
+                border-radius 2px
+                background #FFF
+                
+            &:after
+                content 'check'
+                font-family 'Material Icons'
+                font-size 1.2em
+                position absolute
+                width 18px
+                height 18px
+                left 1px
+                top 1px
+                opacity 0
+                transition all .2s
+                line-height 18px
+                color #FFF
+                text-align center
+                border-radius 2px
+                color red
+            
+            
+                    
+        &:checked
+            & + label
+                &:after
+                    opacity 1

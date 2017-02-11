@@ -58,7 +58,7 @@ export default class Auth {
                 token: response.user.refreshToken
             }
 
-            /** Refresh Aoplication */
+            /** Refresh Application */
             window.location.href = redirect;
         });
     };
