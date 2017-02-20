@@ -6,7 +6,8 @@
         "dev": "gulp",
         "dist": "gulp dist",
         "start": "node ./server.js",
-        "postinstall": "npm run dist"
+        "postinstall": "npm run dist",
+        "test": "gulp test"
     },
     "engines": {
         "node": "^6.9.5"

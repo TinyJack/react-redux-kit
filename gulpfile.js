@@ -11,6 +11,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const webpackStream = require('webpack-stream');
 const gutil = require('gulp-util');
 const assetsPlugin = require('assets-webpack-plugin');
+const eslint = require('gulp-eslint');
+
 const debug = process.env.NODE_ENV !== 'production';
 
 /**
@@ -137,6 +139,15 @@ gulp.task('dist', ['react', 'assets', 'stylus'], () => {
 gulp.task('watch', () => {
     gulp.watch('src/assets/**/*', ['assets']);
     gulp.watch('src/**/*.styl', ['stylus']);
+});
+
+/** @gulp: test -> dist */
+gulp.task('test', ['dist'], function() {
+    return gulp.src(['src/**/*.js', 'src/**/*.jsx', '!node_modules/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+
 });
 
 /** @gulp: default */
