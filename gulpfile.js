@@ -4,14 +4,14 @@ const webpack = require('webpack');
 const plumber = require('gulp-plumber');
 const uglify = require('gulp-uglify');
 const gulpif = require('gulp-if');
-const revReplace = require('gulp-rev-replace');
 const rev = require('gulp-rev');
-const stylus = require('gulp-stylus');
-const autoprefixer = require('gulp-autoprefixer');
-const webpackStream = require('webpack-stream');
 const gutil = require('gulp-util');
-const assetsPlugin = require('assets-webpack-plugin');
+const stylus = require('gulp-stylus');
 const eslint = require('gulp-eslint');
+const revReplace = require('gulp-rev-replace');
+const webpackStream = require('webpack-stream');
+const autoprefixer = require('gulp-autoprefixer');
+const assetsPlugin = require('assets-webpack-plugin');
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -65,7 +65,7 @@ const options = {
             filename: debug ? '[name].js' : '[chunkhash:12].js',
         },
         module: {
-            rules: [!debug ? jsxRules : Object.assign(jsxRules, { use: jsxRules.use.concat('eslint-loader') })],
+            rules: [!debug ? jsxRules : Object.assign(jsxRules, { use: jsxRules.use.concat('eslint-loader') })], // TODO: replace with {...spread} in future
         },
         resolve: {
             modules: ['node_modules', 'src'],
@@ -80,16 +80,16 @@ const options = {
                     GOOGLE_SENDER: JSON.stringify(process.env.GOOGLE_SENDER),
                 },
             }), !debug ? new assetsPlugin({
-                filename: 'react.json',
-                path: 'manifest',
-                processOutput(assets) {
-                    for (const key in assets) {
-                        assets[`${key}.js`] = assets[key].js.slice('/js/'.length);
-                        delete assets[key];
-                    }
-                    return JSON.stringify(assets);
-                },
-            }) : skip,
+                    filename: 'react.json',
+                    path: 'manifest',
+                    processOutput(assets) {
+                        for (const key in assets) {
+                            assets[`${key}.js`] = assets[key].js.slice('/js/'.length);
+                            delete assets[key];
+                        }
+                        return JSON.stringify(assets);
+                    },
+                }) : skip,
         ],
     },
 };
@@ -147,7 +147,6 @@ gulp.task('test', ['dist'], function() {
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
-
 });
 
 /** @gulp: default */
