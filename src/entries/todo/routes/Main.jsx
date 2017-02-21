@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Checkbox from '../components/Checkbox'
-import { todosActions } from '../actions'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Checkbox from '../components/Checkbox';
+import { todosActions } from '../actions';
 
 @connect(state => ({
-    todos: state.todos
+    todos: state.todos,
 }))
 export default class Main extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: ''
-        }
+            title: '',
+        };
 
         /** Bind actions to component */
         this.actions = bindActionCreators(todosActions, this.props.dispatch);
-    };
+    }
 
     componentWillMount() {
         /**
          * Fetch todos list
          */
         this.actions.fetchList();
-    };
+    }
 
     /**
      * Change item status
@@ -53,15 +53,15 @@ export default class Main extends Component {
 
         const { title } = this.state;
 
-        this.actions.pushItem(title)
-        this.setState({ title: ''});
+        this.actions.pushItem(title);
+        this.setState({ title: '' });
     };
 
     render() {
         const { title } = this.state;
         const { data } = this.props.todos;
 
-        return(
+        return (
             <div className="todos">
                 <div className="row">
                     <div className="col-xs-12">
@@ -73,14 +73,14 @@ export default class Main extends Component {
                                 </button>
                             </form>
                             <ul className="panel--body">
-                                
-                                {data.map(item => 
+                                {data.map(item =>
                                     <li className="todos__item" key={item.id}>
-                                        <Checkbox id={item.id} checked={item.status} onChange={this.checkItem} />
+                                        <Checkbox id={item.id} checked={item.status}
+                                            onChange={this.checkItem}
+                                        />
                                         <span className="todos__item--title">{item.title}</span>
-                                    </li>
+                                    </li>,
                                 )}
-
                             </ul>
                         </div>
                     </div>

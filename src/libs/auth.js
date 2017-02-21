@@ -9,7 +9,7 @@ import firebase from 'firebase';
 export default class Auth {
     constructor() {
         this.db = firebase;
-    };
+    }
 
     /**
      * Get current user
@@ -21,7 +21,7 @@ export default class Auth {
                 if (!user) {
                     return reject({
                         status: 403,
-                        message: 'Forbidden'
+                        message: 'Forbidden',
                     });
                 }
 
@@ -30,14 +30,13 @@ export default class Auth {
                     email: user.email,
                     id: user.uid,
                     name: user.displayName,
-                    token: user.refreshToken
-                }
+                    token: user.refreshToken,
+                };
 
-                resolve(this.user);
-
+                return resolve(this.user);
             });
         });
-    };
+    }
 
     /**
      * Sign In with OAuth2 popup
@@ -54,11 +53,11 @@ export default class Auth {
                 email: response.user.email,
                 id: response.user.uid,
                 name: response.user.displayName,
-                token: response.user.refreshToken
-            }
+                token: response.user.refreshToken,
+            };
 
             /** Refresh Application */
             window.location.href = redirect;
         });
-    };
+    }
 }

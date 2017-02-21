@@ -1,3 +1,7 @@
 language: node_js
+
+cache:
+  yarn: true
+
 node_js:
-    - 6
+ - "6.9.5"

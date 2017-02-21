@@ -1,6 +1,6 @@
-import 'babel-polyfill'
-import firebase from 'firebase'
-import AuthProvider from 'libs/auth'
+import 'babel-polyfill';
+import firebase from 'firebase';
+import AuthProvider from 'libs/auth';
 
 /**
  * Firebase connection options
@@ -10,10 +10,10 @@ import AuthProvider from 'libs/auth'
 const firebaseOptions = {
     apiKey: process.env.GOOGLE_KEY || '',
     messagingSenderId: process.env.GOOGLE_SENDER || '',
-    authDomain: "react-redux-kit.firebaseapp.com",
-    databaseURL: "https://react-redux-kit.firebaseio.com",
-    storageBucket: "react-redux-kit.appspot.com"
-}
+    authDomain: 'react-redux-kit.firebaseapp.com',
+    databaseURL: 'https://react-redux-kit.firebaseio.com',
+    storageBucket: 'react-redux-kit.appspot.com',
+};
 
 /** Init firebase connection */
 firebase.initializeApp(firebaseOptions);
@@ -24,8 +24,8 @@ const Auth = new AuthProvider();
 /** Boot up */
 Auth.getUser().then(user => {
     System.import('entries/todo')
-        .then(App => App.onSuccess(user));
+        .then(App => App.default(user));
 }, error => {
     System.import('entries/auth')
-        .then(App => App.onSuccess(error));
+        .then(App => App.default(error));
 });

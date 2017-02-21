@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Auth from 'libs/auth'
+import React, { Component } from 'react';
+import Auth from 'libs/auth';
 
 export default class Main extends Component {
     constructor(props) {
@@ -19,11 +19,11 @@ export default class Main extends Component {
     signIn = event => {
         event.preventDefault();
 
-        this.auth.signIn()
-    }
+        this.auth.signIn();
+    };
 
     render() {
-        return(
+        return (
             <div className="grid boxed auth">
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">

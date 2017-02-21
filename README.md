@@ -2,4 +2,13 @@
 # [react-redux-kit](https://react-redux-kit.herokuapp.com/)
 Simple starter kit for React + Redux with Webpack2
 
+### Features
+...
+### Usage
+...
+### Contributing
+...
+### License
+...
+
 [![Beerpay](https://beerpay.io/salikovpro/react-redux-kit/badge.svg?style=beer-square)](https://beerpay.io/salikovpro/react-redux-kit)

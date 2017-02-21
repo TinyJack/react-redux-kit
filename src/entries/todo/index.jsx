@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Router, Route, Redirect, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-redux'
-import * as Routes from './routes'
-import store from './store'
-import { SET_USER } from './constants'
-import Aside from './components/Aside'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, Redirect, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import * as Routes from './routes';
+import store from './store';
+import { SET_USER } from './constants';
+import Aside from './components/Aside';
 
 /** Bind history actions to store */
 const history = syncHistoryWithStore(browserHistory, store);
@@ -17,8 +17,7 @@ const node = (
         <div className="content">
             <Aside />
             <Router history={history}>
-                <div className="test">ajshkajhdkajhdskjdkad</div>
-                <Route path="/" component={ Routes.Main } />
+                <Route path="/" component={Routes.Main} />
                 <Redirect from="*" to="/" />
             </Router>
         </div>
@@ -29,7 +28,7 @@ const node = (
 ReactDOM.render(node, document.getElementById('app'));
 
 /** Success loading */
-export function onSuccess(...data) {
+export default function onSuccess(...data) {
     const [payload] = data;
 
     /**
