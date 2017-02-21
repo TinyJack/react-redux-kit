@@ -1,5 +1,3 @@
-import firebase from 'firebase';
-
 /**
  * Author @salikovpro
  * 13 Feb. 2017
@@ -7,5 +5,5 @@ import firebase from 'firebase';
  * https://firebase.google.com/docs/web/setup
  */
 
-export default class Storage {   
+export default class Storage {
 }
