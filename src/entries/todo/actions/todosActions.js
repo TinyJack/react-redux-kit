@@ -1,41 +1,41 @@
-import CryptoJS from 'crypto-js'
-import { CHECK_ITEM, FETCH_LIST, PUSH_ITEM } from '../constants'
+import CryptoJS from 'crypto-js';
+import { CHECK_ITEM, FETCH_LIST, PUSH_ITEM } from '../constants';
 
 export function checkItem(id) {
-    return function(dispatch) {
+    return function (dispatch) {
         dispatch({
             type: CHECK_ITEM,
-            payload: id
+            payload: id,
         });
-    }
+    };
 }
 
 export function fetchList() {
-    return function(dispatch) {
+    return function (dispatch) {
         dispatch({
             type: FETCH_LIST,
             payload: [{
                 id: 1,
                 status: false,
-                title: '1'
+                title: '1',
             }, {
                 id: 2,
                 status: false,
-                title: '2'
-            }]
-        })
-    }
+                title: '2',
+            }],
+        });
+    };
 }
 
 export function pushItem(title) {
-    return function(dispatch) {
+    return function (dispatch) {
         dispatch({
             type: PUSH_ITEM,
             payload: {
                 title,
                 id: CryptoJS.lib.WordArray.random(256 / 16).toString(),
-                status: false
-            }
-        })
-    }
+                status: false,
+            },
+        });
+    };
 }

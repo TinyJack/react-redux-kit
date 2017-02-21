@@ -1,12 +1,11 @@
-import { SET_USER } from '../constants'
+import { SET_USER } from '../constants';
 
 const initialState = {
     name: '',
     email: '',
     icon: '',
     id: '',
-    name: '',
-    token: ''
+    token: '',
 };
 
 export default function (state = initialState, action) {
