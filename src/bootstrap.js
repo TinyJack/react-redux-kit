@@ -10,9 +10,9 @@ import AuthProvider from 'libs/auth';
 const firebaseOptions = {
     apiKey: process.env.GOOGLE_KEY || '',
     messagingSenderId: process.env.GOOGLE_SENDER || '',
-    authDomain: 'react-redux-kit.firebaseapp.com',
-    databaseURL: 'https://react-redux-kit.firebaseio.com',
-    storageBucket: 'react-redux-kit.appspot.com',
+    authDomain: 'reduxreact-e0bff.firebaseapp.com',
+    databaseURL: 'https://reduxreact-e0bff.firebaseio.com',
+    storageBucket: 'reduxreact-e0bff.appspot.com',
 };
 
 /** Init firebase connection */
