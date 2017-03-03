@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
 
 export default class TodoName extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { disable: true };
-        this.value = this.props.value;
-    }
     /**
      * Handle input change
      */
-    handleChange = () => {
+    handleChange = event => {
         const { id } = this.props;
-        this.props.onChange(id);
-    };
-
-    /**
-     *
-     */
-    handleClick = () => {
-        this.setState({ disable: false });
+        this.props.onChange(id, event.target.value);
     };
 
     /**
      *
      */
     handleBlur = () => {
-        this.setState({ disable: true });
+        // this.setState({ disable: true });
     };
 
     render() {
-        const inputClass = `todos__item--input ${this.state.disable ? 'disable' : ''}`;
+        const { disable, value } = this.props;
+        const inputClass = `todos__item--input ${disable ? 'disable' : ''}`;
         return (
             <input className={inputClass} onBlur={this.handleBlur}
-                type="text" onClick={this.handleClick} value={this.value} onChange={this.handleChange}
+                type="text" onClick={this.handleClick} value={value} onChange={this.handleChange}
             />
         );
     }

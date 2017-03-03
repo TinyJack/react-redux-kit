@@ -15,6 +15,7 @@ export default class Main extends Component {
 
         this.state = {
             title: '',
+            disable: true,
         };
 
         /** Bind actions to component */
@@ -27,6 +28,11 @@ export default class Main extends Component {
          */
         this.actions.fetchList();
     }
+
+    /**
+     *
+     */
+    setEdit = () => this.setState({ disable: false });
 
     /**
      * Change item status
@@ -51,8 +57,8 @@ export default class Main extends Component {
      */
     deleteItem = id => this.actions.deleteItem(id);
 
-    editItem = () => {
-
+    editItem = (id, title) => {
+        this.actions.editItem({ id, title, status: false });
     };
 
     /**
@@ -69,7 +75,7 @@ export default class Main extends Component {
     };
 
     render() {
-        const { title } = this.state;
+        const { title, disable } = this.state;
         const { data } = this.props.todos;
 
         return (
@@ -83,14 +89,15 @@ export default class Main extends Component {
                                     Push
                                 </button>
                             </form>
-                            <ul className="panel--body">
+                            <ul className="panel--body" onClick={this.setEdit}>
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status}
                                             onChange={this.checkItem}
                                         />
-                                        <TodoName value={item.title} onChange={this.editItem} />
-                                        <span className="todos__item--title">{item.title}</span>
+                                        <TodoName value={item.title} id={item.id} disable={disable}
+                                            onChange={this.editItem}
+                                        />
                                         <Trash id={item.id} onClick={this.deleteItem} />
                                     </li>,
                                 )}
