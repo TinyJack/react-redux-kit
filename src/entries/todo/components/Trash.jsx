@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Trash extends Component {
-    componentWillMount() {
-        this.id = Math.random();
-    }
 
     /**
      * Handle input change
@@ -16,9 +13,9 @@ export default class Trash extends Component {
 
     render() {
         return (
-            <div className="trash">
+            <button className="trash" type="button" onClick={this.handleClick}>
                 <i className="material-icons">delete</i>
-            </div>
+            </button>
         );
     }
 }

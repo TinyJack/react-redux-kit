@@ -48,7 +48,7 @@ export default class Main extends Component {
      * Delete item
      * @param id
      */
-    deleteItem = id => this.actions.delteItem(id);
+    deleteItem = id => this.actions.deleteItem(id);
 
     /**
      * Push new item
@@ -85,7 +85,7 @@ export default class Main extends Component {
                                             onChange={this.checkItem}
                                         />
                                         <span className="todos__item--title">{item.title}</span>
-                                        <Trash id={item.id} />
+                                        <Trash id={item.id} onClick={this.deleteItem} />
                                     </li>,
                                 )}
                             </ul>

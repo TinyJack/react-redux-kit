@@ -7,7 +7,6 @@ import * as Routes from './routes';
 import store from './store';
 import { SET_USER } from './constants';
 import Aside from './components/Aside';
-import { pushItem, deleteItem } from './actions/todosActions';
 
 /** Bind history actions to store */
 const history = syncHistoryWithStore(browserHistory, store);
@@ -41,6 +40,3 @@ export default function onSuccess(...data) {
         type: SET_USER,
     });
 }
-
-store.dispatch(pushItem('Bdfsdfsa'));
-store.dispatch(deleteItem(1));
