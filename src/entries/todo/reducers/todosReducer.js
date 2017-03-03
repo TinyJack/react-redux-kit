@@ -1,4 +1,4 @@
-import { CHECK_ITEM, FETCH_LIST, PUSH_ITEM } from '../constants';
+import * as types from '../constants';
 
 const initialState = {
     data: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case CHECK_ITEM:
+        case types.CHECK_ITEM:
             return {
                 ...state,
                 data: state.data.reduce((result, item) => {
@@ -17,11 +17,14 @@ export default function (state = initialState, action) {
                     return result;
                 }, []) };
 
-        case FETCH_LIST:
+        case types.FETCH_LIST:
             return { ...state, data: action.payload };
 
-        case PUSH_ITEM:
+        case types.PUSH_ITEM:
             return { ...state, data: [action.payload].concat(state.data) };
+
+        case types.DELETE_ITEM:
+            return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 
         default:
             return state;

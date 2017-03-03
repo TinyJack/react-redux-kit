@@ -1,10 +1,10 @@
 import CryptoJS from 'crypto-js';
-import { CHECK_ITEM, FETCH_LIST, PUSH_ITEM } from '../constants';
+import * as types from '../constants';
 
 export function checkItem(id) {
     return function (dispatch) {
         dispatch({
-            type: CHECK_ITEM,
+            type: types.CHECK_ITEM,
             payload: id,
         });
     };
@@ -13,7 +13,7 @@ export function checkItem(id) {
 export function fetchList() {
     return function (dispatch) {
         dispatch({
-            type: FETCH_LIST,
+            type: types.FETCH_LIST,
             payload: [{
                 id: 1,
                 status: false,
@@ -30,12 +30,21 @@ export function fetchList() {
 export function pushItem(title) {
     return function (dispatch) {
         dispatch({
-            type: PUSH_ITEM,
+            type: types.PUSH_ITEM,
             payload: {
                 title,
                 id: CryptoJS.lib.WordArray.random(256 / 16).toString(),
                 status: false,
             },
+        });
+    };
+}
+
+export function deleteItem(id) {
+    return function (dispatch) {
+        dispatch({
+            type: types.DELETE_ITEM,
+            payload: id,
         });
     };
 }
