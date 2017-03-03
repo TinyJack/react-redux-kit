@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Checkbox from '../components/Checkbox';
+import Trash from '../components/Trash';
 import { todosActions } from '../actions';
 
 @connect(state => ({
@@ -31,7 +32,6 @@ export default class Main extends Component {
      * @param  {ObjcetId} Item id
      */
     checkItem = id => {
-        // this.props.dispatch({ type: 'CHECK_ITEM', payload: id});
         this.actions.checkItem(id);
     };
 
@@ -43,6 +43,12 @@ export default class Main extends Component {
         const { value } = event.target;
         this.setState({ title: value });
     };
+
+    /**
+     * Delete item
+     * @param id
+     */
+    deleteItem = id => this.actions.delteItem(id);
 
     /**
      * Push new item
@@ -79,6 +85,7 @@ export default class Main extends Component {
                                             onChange={this.checkItem}
                                         />
                                         <span className="todos__item--title">{item.title}</span>
+                                        <Trash id={item.id} />
                                     </li>,
                                 )}
                             </ul>
