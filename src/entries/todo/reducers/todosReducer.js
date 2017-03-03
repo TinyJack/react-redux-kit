@@ -23,6 +23,12 @@ export default function (state = initialState, action) {
         case types.PUSH_ITEM:
             return { ...state, data: [action.payload].concat(state.data) };
 
+        case types.EDIT_ITEM:
+            return { ...state,
+                data: state.data.map(item => {
+                    return item.id === action.payload.id ? action.payload : item;
+                }) };
+
         case types.DELETE_ITEM:
             return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 

@@ -40,6 +40,15 @@ export function pushItem(title) {
     };
 }
 
+export function editItem(payload) {
+    return function (dispatch) {
+        dispatch({
+            type: types.PUSH_ITEM,
+            payload,
+        });
+    };
+}
+
 export function deleteItem(id) {
     return function (dispatch) {
         dispatch({

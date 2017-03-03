@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Checkbox from '../components/Checkbox';
 import Trash from '../components/Trash';
+import TodoName from '../components/TodoName';
 import { todosActions } from '../actions';
 
 @connect(state => ({
@@ -50,6 +51,10 @@ export default class Main extends Component {
      */
     deleteItem = id => this.actions.deleteItem(id);
 
+    editItem = () => {
+
+    };
+
     /**
      * Push new item
      * @param  {Proxy event} event
@@ -84,6 +89,7 @@ export default class Main extends Component {
                                         <Checkbox id={item.id} checked={item.status}
                                             onChange={this.checkItem}
                                         />
+                                        <TodoName value={item.title} onChange={this.editItem} />
                                         <span className="todos__item--title">{item.title}</span>
                                         <Trash id={item.id} onClick={this.deleteItem} />
                                     </li>,

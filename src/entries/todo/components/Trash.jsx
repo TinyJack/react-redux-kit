@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 export default class Trash extends Component {
 
     /**
-     * Handle input change
-     * @param  {Proxy event} event
+     * Handle click
+     * @param
      */
     handleClick = () => {
         const { id } = this.props;
@@ -13,7 +13,7 @@ export default class Trash extends Component {
 
     render() {
         return (
-            <button className="trash" type="button" onClick={this.handleClick}>
+            <button className="trash" type="button" onClick={this.handleClick} title="Delete">
                 <i className="material-icons">delete</i>
             </button>
         );
