@@ -17,7 +17,6 @@ export default class Main extends Component {
         this.state = {
             title: '',
             disable: true,
-            select: false,
         };
 
         /** Bind actions to component */
@@ -54,14 +53,21 @@ export default class Main extends Component {
      */
     deleteItem = id => this.actions.deleteItem(id);
 
-    editItem = (id, title) => {
-        this.actions.editItem({ id, title, status: false });
-    };
+    /**
+     * Delete all items
+     * @param id
+     */
+    deleteAll = () => this.actions.deleteAll();
+
+    /**
+     * Edit item
+     * @param id
+     * @param title
+     */
+    editItem = (id, title) => { this.actions.editItem({ id, title }); };
 
     selectAll = () => {
-        const status = this.state.select;
-        this.setState({ select: !status });
-        this.actions.selectAll(!status);
+        this.actions.selectAll(false);
     };
 
     /**
@@ -70,16 +76,15 @@ export default class Main extends Component {
      */
     push = event => {
         event.preventDefault();
-
         const { title } = this.state;
-
+        if (!String(title)) return;
         this.actions.pushItem(title);
         this.setState({ title: '' });
     };
 
     render() {
-        const { title, disable, select } = this.state;
-        const { data } = this.props.todos;
+        const { title, disable } = this.state;
+        const { data, select } = this.props.todos;
 
         return (
             <div className="todos">
@@ -92,7 +97,9 @@ export default class Main extends Component {
                                     Push
                                 </button>
                             </form>
-                            <Panel selectAll={this.selectAll} select={select}>
+                            <Panel selectAll={this.selectAll}
+                                deleteAll={this.deleteAll} select={select}
+                            >
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status}

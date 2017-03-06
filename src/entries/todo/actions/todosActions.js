@@ -58,11 +58,18 @@ export function deleteItem(id) {
     };
 }
 
-export function selectAll(status) {
+export function selectAll() {
     return function (dispatch) {
         dispatch({
             type: types.SELECT_ALL,
-            payload: status,
+        });
+    };
+}
+
+export function deleteAll() {
+    return function (dispatch) {
+        dispatch({
+            type: types.DELETE_ALL,
         });
     };
 }

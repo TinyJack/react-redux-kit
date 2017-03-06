@@ -2,6 +2,7 @@ import * as types from '../constants';
 
 const initialState = {
     data: [],
+    select: false,
 };
 
 export default function (state = initialState, action) {
@@ -26,18 +27,23 @@ export default function (state = initialState, action) {
         case types.EDIT_ITEM:
             return { ...state,
                 data: state.data.map(item => {
-                    return item.id === action.payload.id ? action.payload : item;
+                    return item.id === action.payload.id ? { ...item, ...action.payload } : item;
                 }) };
 
         case types.DELETE_ITEM:
             return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 
+        case types.DELETE_ALL:
+            return { ...state, data: [] };
+
         case types.SELECT_ALL:
             return { ...state,
+                select: !state.select,
                 data: state.data.map(elem => {
-                    const status = { status: action.payload };
+                    const status = { status: !state.select };
                     return { ...elem, ...status };
-                }) };
+                }),
+            };
 
         default:
             return state;
