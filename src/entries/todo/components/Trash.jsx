@@ -13,7 +13,7 @@ export default class Trash extends Component {
 
     render() {
         return (
-            <button className="trash" type="button" onClick={this.handleClick} title="Delete">
+            <button className="button--grey" type="button" onClick={this.handleClick} title="Delete">
                 <i className="material-icons">delete</i>
             </button>
         );

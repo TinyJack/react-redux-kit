@@ -9,18 +9,10 @@ export default class TodoName extends Component {
         this.props.onChange(id, event.target.value);
     };
 
-    /**
-     *
-     */
-    handleBlur = () => {
-        // this.setState({ disable: true });
-    };
-
     render() {
-        const { disable, value } = this.props;
-        const inputClass = `todos__item--input ${disable ? 'disable' : ''}`;
+        const { value } = this.props;
         return (
-            <input className={inputClass} onBlur={this.handleBlur}
+            <input className="todos__item--input" onBlur={this.handleBlur}
                 type="text" onClick={this.handleClick} value={value} onChange={this.handleChange}
             />
         );

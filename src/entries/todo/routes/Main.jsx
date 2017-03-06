@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Checkbox from '../components/Checkbox';
 import Trash from '../components/Trash';
+import Panel from '../components/Panel';
 import TodoName from '../components/TodoName';
 import { todosActions } from '../actions';
 
@@ -30,11 +31,6 @@ export default class Main extends Component {
     }
 
     /**
-     *
-     */
-    setEdit = () => this.setState({ disable: false });
-
-    /**
      * Change item status
      * @param  {ObjcetId} Item id
      */
@@ -60,6 +56,8 @@ export default class Main extends Component {
     editItem = (id, title) => {
         this.actions.editItem({ id, title, status: false });
     };
+
+    selectAll = () => { };
 
     /**
      * Push new item
@@ -89,7 +87,7 @@ export default class Main extends Component {
                                     Push
                                 </button>
                             </form>
-                            <ul className="panel--body" onClick={this.setEdit}>
+                            <Panel selectAll={this.selectAll}>
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status}
@@ -101,7 +99,7 @@ export default class Main extends Component {
                                         <Trash id={item.id} onClick={this.deleteItem} />
                                     </li>,
                                 )}
-                            </ul>
+                            </Panel>
                         </div>
                     </div>
                 </div>
