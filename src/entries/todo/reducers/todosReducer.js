@@ -32,6 +32,13 @@ export default function (state = initialState, action) {
         case types.DELETE_ITEM:
             return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 
+        case types.SELECT_ALL:
+            return { ...state,
+                data: state.data.map(elem => {
+                    const status = { status: action.payload };
+                    return { ...elem, ...status };
+                }) };
+
         default:
             return state;
     }

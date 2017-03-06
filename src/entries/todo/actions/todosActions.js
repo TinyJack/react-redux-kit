@@ -57,3 +57,13 @@ export function deleteItem(id) {
         });
     };
 }
+
+export function selectAll(status) {
+    return function (dispatch) {
+        dispatch({
+            type: types.SELECT_ALL,
+            payload: status,
+        });
+    };
+}
+

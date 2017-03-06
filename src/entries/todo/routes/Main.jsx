@@ -17,6 +17,7 @@ export default class Main extends Component {
         this.state = {
             title: '',
             disable: true,
+            select: false,
         };
 
         /** Bind actions to component */
@@ -57,7 +58,11 @@ export default class Main extends Component {
         this.actions.editItem({ id, title, status: false });
     };
 
-    selectAll = () => { };
+    selectAll = () => {
+        const status = this.state.select;
+        this.setState({ select: !status });
+        this.actions.selectAll(!status);
+    };
 
     /**
      * Push new item
@@ -73,7 +78,7 @@ export default class Main extends Component {
     };
 
     render() {
-        const { title, disable } = this.state;
+        const { title, disable, select } = this.state;
         const { data } = this.props.todos;
 
         return (
@@ -87,7 +92,7 @@ export default class Main extends Component {
                                     Push
                                 </button>
                             </form>
-                            <Panel selectAll={this.selectAll}>
+                            <Panel selectAll={this.selectAll} select={select}>
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status}
