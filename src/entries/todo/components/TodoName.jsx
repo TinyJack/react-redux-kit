@@ -10,9 +10,10 @@ export default class TodoName extends Component {
     };
 
     render() {
-        const { value } = this.props;
+        const { value, checked } = this.props;
+        const itemClass = `todos__item--input ${checked ? 'todos__item--checked' : ''}`;
         return (
-            <input className="todos__item--input" onBlur={this.handleBlur}
+            <input className={itemClass} onBlur={this.handleBlur}
                 type="text" onClick={this.handleClick} value={value} onChange={this.handleChange}
             />
         );

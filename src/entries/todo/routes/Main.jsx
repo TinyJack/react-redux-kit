@@ -105,7 +105,8 @@ export default class Main extends Component {
                                         <Checkbox id={item.id} checked={item.status}
                                             onChange={this.checkItem}
                                         />
-                                        <TodoName value={item.title} id={item.id} disable={disable}
+                                        <TodoName value={item.title} id={item.id}
+                                            disable={disable} checked={item.status}
                                             onChange={this.editItem}
                                         />
                                         <Trash id={item.id} onClick={this.deleteItem} />

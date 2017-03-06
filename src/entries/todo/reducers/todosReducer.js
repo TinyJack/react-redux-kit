@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
             return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 
         case types.DELETE_ALL:
-            return { ...state, data: [] };
+            return { ...state, data: [], select: false };
 
         case types.SELECT_ALL:
             return { ...state,
