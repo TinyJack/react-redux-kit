@@ -1,29 +1,18 @@
 import CryptoJS from 'crypto-js';
 import * as types from '../constants';
 
-export function checkItem(id) {
-    return function (dispatch) {
-        dispatch({
-            type: types.CHECK_ITEM,
-            payload: id,
-        });
-    };
-}
-
 export function fetchList() {
-    return function (dispatch) {
-        dispatch({
-            type: types.FETCH_LIST,
-            payload: [{
-                id: 1,
-                status: false,
-                title: '1',
-            }, {
-                id: 2,
-                status: false,
-                title: '2',
-            }],
-        });
+    return {
+        type: types.FETCH_LIST,
+        payload: [{
+            id: 1,
+            status: false,
+            title: '1',
+        }, {
+            id: 2,
+            status: false,
+            title: '2',
+        }],
     };
 }
 
@@ -63,6 +52,27 @@ export function selectAll() {
         dispatch({
             type: types.SELECT_ALL,
         });
+
+        return dispatch({
+            type: types.SET_SELECT,
+        });
+    };
+}
+
+export function setSelect() {
+    return {
+        type: types.SET_SELECT,
+    };
+}
+
+export function checkItem(id) {
+    return function (dispatch) {
+        dispatch({
+            type: types.CHECK_ITEM,
+            payload: id,
+        });
+
+        return dispatch(setSelect());
     };
 }
 

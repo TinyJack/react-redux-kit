@@ -36,9 +36,11 @@ export default function (state = initialState, action) {
         case types.DELETE_ALL:
             return { ...state, data: [], select: false };
 
+        case types.SET_SELECT:
+            return { ...state, select: state.data.every(item => item.status) };
+
         case types.SELECT_ALL:
             return { ...state,
-                select: !state.select,
                 data: state.data.map(elem => {
                     const status = { status: !state.select };
                     return { ...elem, ...status };
