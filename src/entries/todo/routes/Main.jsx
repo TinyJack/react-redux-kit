@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Checkbox from '../components/Checkbox';
-import Trash from '../components/Trash';
-import Panel from '../components/Panel';
-import TodoName from '../components/TodoName';
+import Container from '../components/Container';
 import { todosActions } from '../actions';
 
 @connect(state => ({
@@ -87,36 +84,11 @@ export default class Main extends Component {
         const { data, select } = this.props.todos;
 
         return (
-            <div className="todos">
-                <div className="row">
-                    <div className="col-xs-12">
-                        <div className="panel">
-                            <form className="panel--header todos__form" onSubmit={this.push}>
-                                <input type="text" className="input todos__form--input" placeholder="New todo" onChange={this.handleInput} value={title} />
-                                <button className="button button--red todos__form--submit">
-                                    Push
-                                </button>
-                            </form>
-                            <Panel selectAll={this.selectAll}
-                                deleteAll={this.deleteAll} select={select}
-                            >
-                                {data.map(item =>
-                                    <li className="todos__item" key={item.id}>
-                                        <Checkbox id={item.id} checked={item.status}
-                                            onChange={this.checkItem}
-                                        />
-                                        <TodoName value={item.title} id={item.id}
-                                            disable={disable} checked={item.status}
-                                            onChange={this.editItem}
-                                        />
-                                        <Trash id={item.id} onClick={this.deleteItem} />
-                                    </li>,
-                                )}
-                            </Panel>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Container title={title} disable={disable} push={this.push}
+                data={data} select={select} selectAll={this.selectAll} deleteAll={this.deleteAll}
+                checkItem={this.checkItem} deleteItem={this.deleteItem} editItem={this.editItem}
+                handleInput={this.handleInput}
+            />
         );
     }
 }
