@@ -47,21 +47,12 @@ export function deleteItem(id) {
     };
 }
 
-export function selectAll() {
+export function selectAll(status) {
     return function (dispatch) {
         dispatch({
             type: types.SELECT_ALL,
+            payload: status,
         });
-
-        return dispatch({
-            type: types.SET_SELECT,
-        });
-    };
-}
-
-export function setSelect() {
-    return {
-        type: types.SET_SELECT,
     };
 }
 
@@ -71,8 +62,6 @@ export function checkItem(id) {
             type: types.CHECK_ITEM,
             payload: id,
         });
-
-        return dispatch(setSelect());
     };
 }
 

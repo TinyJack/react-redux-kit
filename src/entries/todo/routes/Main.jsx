@@ -19,6 +19,8 @@ export default class Main extends Component {
             disable: true,
         };
 
+        this.select = false;
+
         /** Bind actions to component */
         this.actions = bindActionCreators(todosActions, this.props.dispatch);
     }
@@ -67,7 +69,7 @@ export default class Main extends Component {
     editItem = (id, title) => { this.actions.editItem({ id, title }); };
 
     selectAll = () => {
-        this.actions.selectAll(false);
+        this.actions.selectAll(!this.select);
     };
 
     /**
@@ -84,7 +86,8 @@ export default class Main extends Component {
 
     render() {
         const { title, disable } = this.state;
-        const { data, select } = this.props.todos;
+        const { data } = this.props.todos;
+        this.select = data.every(item => item.status);
 
         return (
             <div className="todos">
@@ -98,7 +101,7 @@ export default class Main extends Component {
                                 </button>
                             </form>
                             <Panel selectAll={this.selectAll}
-                                deleteAll={this.deleteAll} select={select}
+                                deleteAll={this.deleteAll} select={this.select}
                             >
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>

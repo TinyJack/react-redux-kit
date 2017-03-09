@@ -2,7 +2,6 @@ import * as types from '../constants';
 
 const initialState = {
     data: [],
-    select: false,
 };
 
 export default function (state = initialState, action) {
@@ -34,15 +33,12 @@ export default function (state = initialState, action) {
             return { ...state, data: state.data.filter(elem => elem.id !== action.payload) };
 
         case types.DELETE_ALL:
-            return { ...state, data: [], select: false };
-
-        case types.SET_SELECT:
-            return { ...state, select: state.data.every(item => item.status) };
+            return { ...state, data: [] };
 
         case types.SELECT_ALL:
             return { ...state,
                 data: state.data.map(elem => {
-                    const status = { status: !state.select };
+                    const status = { status: action.payload };
                     return { ...elem, ...status };
                 }),
             };
