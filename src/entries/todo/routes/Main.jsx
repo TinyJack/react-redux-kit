@@ -36,8 +36,8 @@ export default class Main extends Component {
      * Change item status
      * @param  {ObjcetId} Item id
      */
-    checkItem = id => {
-        this.actions.checkItem(id);
+    checkItem = (id, status) => {
+        this.actions.checkItem(id, status);
     };
 
     /**
