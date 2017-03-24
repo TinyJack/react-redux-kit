@@ -6,7 +6,7 @@ const ref = firebase.database().ref('/todo/');
 export function fetchList() {
     return function (dispatch) {
         ref.once('value', snapshot => {
-            const payload = Object.values(snapshot.val());
+            const payload = snapshot.val() ? Object.values(snapshot.val()) : [];
             dispatch({ type: types.FETCH_LIST,
                 payload,
             });
@@ -48,6 +48,12 @@ export function deleteItem(id) {
 
 export function selectAll(status) {
     return function (dispatch) {
+        ref.once('value', snapshot => {
+            snapshot.forEach(childSnapshot => {
+                ref.child(childSnapshot.key).update({ status });
+            });
+        });
+
         dispatch({
             type: types.SELECT_ALL,
             payload: status,
@@ -67,6 +73,7 @@ export function checkItem(id, status) {
 
 export function deleteAll() {
     return function (dispatch) {
+        ref.set({});
         dispatch({
             type: types.DELETE_ALL,
         });
