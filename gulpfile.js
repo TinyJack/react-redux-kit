@@ -20,7 +20,7 @@ const debug = process.env.NODE_ENV !== 'production';
  */
 function skip() {
     gutil.log(gutil.colors.red.bold('::WEBPACK DEV PLUGINS ON DEMAND::'));
-    gutil.log(gutil.colors.red.bold(process.env.));
+    gutil.log(gutil.colors.red.bold(process.env));
 }
 
 /**
