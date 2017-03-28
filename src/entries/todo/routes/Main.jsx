@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Checkbox from '../components/Checkbox';
+import Trash from '../components/Trash';
+import Panel from '../components/Panel';
+import TodoName from '../components/TodoName';
 import { todosActions } from '../actions';
 
 @connect(state => ({
@@ -13,7 +16,10 @@ export default class Main extends Component {
 
         this.state = {
             title: '',
+            disable: true,
         };
+
+        this.select = false;
 
         /** Bind actions to component */
         this.actions = bindActionCreators(todosActions, this.props.dispatch);
@@ -30,9 +36,8 @@ export default class Main extends Component {
      * Change item status
      * @param  {ObjcetId} Item id
      */
-    checkItem = id => {
-        // this.props.dispatch({ type: 'CHECK_ITEM', payload: id});
-        this.actions.checkItem(id);
+    checkItem = (id, status) => {
+        this.actions.checkItem(id, status);
     };
 
     /**
@@ -45,21 +50,44 @@ export default class Main extends Component {
     };
 
     /**
+     * Delete item
+     * @param id
+     */
+    deleteItem = id => this.actions.deleteItem(id);
+
+    /**
+     * Delete all items
+     * @param id
+     */
+    deleteAll = () => this.actions.deleteAll();
+
+    /**
+     * Edit item
+     * @param id
+     * @param title
+     */
+    editItem = (id, title) => { this.actions.editItem({ id, title }); };
+
+    selectAll = () => {
+        this.actions.selectAll(!this.select);
+    };
+
+    /**
      * Push new item
      * @param  {Proxy event} event
      */
     push = event => {
         event.preventDefault();
-
         const { title } = this.state;
-
+        if (!String(title)) return;
         this.actions.pushItem(title);
         this.setState({ title: '' });
     };
 
     render() {
-        const { title } = this.state;
+        const { title, disable } = this.state;
         const { data } = this.props.todos;
+        this.select = data.every(item => item.status);
 
         return (
             <div className="todos">
@@ -72,16 +100,22 @@ export default class Main extends Component {
                                     Push
                                 </button>
                             </form>
-                            <ul className="panel--body">
+                            <Panel selectAll={this.selectAll}
+                                deleteAll={this.deleteAll} select={this.select}
+                            >
                                 {data.map(item =>
                                     <li className="todos__item" key={item.id}>
                                         <Checkbox id={item.id} checked={item.status}
                                             onChange={this.checkItem}
                                         />
-                                        <span className="todos__item--title">{item.title}</span>
+                                        <TodoName value={item.title} id={item.id}
+                                            disable={disable} checked={item.status}
+                                            onChange={this.editItem}
+                                        />
+                                        <Trash id={item.id} onClick={this.deleteItem} />
                                     </li>,
                                 )}
-                            </ul>
+                            </Panel>
                         </div>
                     </div>
                 </div>

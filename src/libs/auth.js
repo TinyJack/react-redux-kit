@@ -60,4 +60,10 @@ export default class Auth {
             window.location.href = redirect;
         });
     }
+
+    signOut(redirect = '/') {
+        this.db.auth().signOut().then(() => {
+            window.location.href = redirect;
+        });
+    }
 }
